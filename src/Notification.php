@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace Falgun\Notification;
 
-use Notes\NoteInterface;
 use Falgun\Http\Session;
+use Falgun\Notification\Notes\BootstrapNote;
+use Falgun\Notification\Notes\NoteInterface;
 
 class Notification implements NotificationInterface
 {
@@ -14,7 +15,7 @@ class Notification implements NotificationInterface
     protected Session $session;
     protected string $noteClass;
 
-    public function __construct(Session $session, string $noteClass = BootstrapNote ::class)
+    public function __construct(Session $session, string $noteClass = BootstrapNote::class)
     {
         $this->session = $session;
         $this->noteClass = $noteClass;
@@ -73,7 +74,13 @@ class Notification implements NotificationInterface
 
     public function noteFactory(): NoteInterface
     {
-        return new $this->noteClass;
+        $note = new $this->noteClass();
+
+        if (!$note instanceof NoteInterface) {
+            throw new \RuntimeException($this->noteClass . ' must implement ' . NoteInterface::class);
+        }
+
+        return $note;
     }
 
     public function successNote(string $message): void

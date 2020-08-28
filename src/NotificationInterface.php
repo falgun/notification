@@ -2,7 +2,7 @@
 
 namespace Falgun\Notification;
 
-use Notes\NoteInterface;
+use Falgun\Notification\Notes\NoteInterface;
 
 interface NotificationInterface
 {
