@@ -1,6 +1,8 @@
 {
     "name": "falgunphp/notification",
     "type": "library",
+    "homepage": "https://github.com/falgun/notification",
+    "license": "MIT",
     "authors": [
         {
             "name": "S.M. Ataur Rahman",
@@ -19,7 +21,8 @@
         }
     },
     "require": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "falgunphp/http": "^0.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.5",

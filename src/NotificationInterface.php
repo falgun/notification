@@ -21,7 +21,7 @@ interface NotificationInterface
 
     public function flashNotifications(): array;
 
-    public function noteFactory(): NoteInterface;
+    public function noteFactory(string $message): NoteInterface;
 
     public function successNote(string $message): void;
 

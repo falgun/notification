@@ -6,23 +6,37 @@ namespace Falgun\Notification\Notes;
 class BootstrapNote extends SimpleNote implements NoteInterface
 {
 
-    public string $icon;
+    public const TYPE_SUCCESS = 'success';
+    public const TYPE_WARNING = 'warning';
+    public const TYPE_ERROR = 'danger';
+
+    protected string $icon;
 
     public function markAsSuccess(): void
     {
-        $this->type = 'success';
+        parent::markAsSuccess();
         $this->icon = 'check';
     }
 
     public function markAsWarning(): void
     {
-        $this->type = 'warning';
+        parent::markAsWarning();
         $this->icon = 'exclamation-triangle';
     }
 
     public function markAsError(): void
     {
-        $this->type = 'danger';
+        parent::markAsError();
         $this->icon = 'times';
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): void
+    {
+        $this->icon = $icon;
     }
 }

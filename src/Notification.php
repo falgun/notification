@@ -72,9 +72,9 @@ class Notification implements NotificationInterface
         return $notifications;
     }
 
-    public function noteFactory(): NoteInterface
+    public function noteFactory(string $message): NoteInterface
     {
-        $note = new $this->noteClass();
+        $note = new $this->noteClass($message);
 
         if (!$note instanceof NoteInterface) {
             throw new \RuntimeException($this->noteClass . ' must implement ' . NoteInterface::class);
@@ -85,8 +85,7 @@ class Notification implements NotificationInterface
 
     public function successNote(string $message): void
     {
-        $note = $this->noteFactory();
-        $note->message = $message;
+        $note = $this->noteFactory($message);
         $note->markAsSuccess();
 
         $this->setNote($note);
@@ -94,8 +93,7 @@ class Notification implements NotificationInterface
 
     public function warningNote(string $message): void
     {
-        $note = $this->noteFactory();
-        $note->message = $message;
+        $note = $this->noteFactory($message);
         $note->markAsWarning();
 
         $this->setNote($note);
@@ -103,8 +101,7 @@ class Notification implements NotificationInterface
 
     public function errorNote(string $message): void
     {
-        $note = $this->noteFactory();
-        $note->message = $message;
+        $note = $this->noteFactory($message);
         $note->markAsError();
 
         $this->setNote($note);
