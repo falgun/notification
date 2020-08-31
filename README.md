@@ -26,10 +26,10 @@ $notification->errorNote('hold up');
 
 $notes = $notification->flashNotifications(); // to get notifications and remove them from session
 // or
-$notes = $notification->getNotifications(); // only get notifications
+$notes = $notification->getNotifications(); // only get notifications and don't remove them
 
 foreach($notes as $note){
-	echo $note->getMessage(); // this it the message of the note
+	echo $note->getMessage(); // this is the message of the note
 	echo $note->getType(); // success or warning or error
 }
 ```
