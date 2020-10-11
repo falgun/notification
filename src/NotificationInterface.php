@@ -7,9 +7,21 @@ use Falgun\Notification\Notes\NoteInterface;
 interface NotificationInterface
 {
 
+    /**
+     * @param array<int, NoteInterface> $notifications
+     * @return void
+     */
     public function setNotifications(array $notifications): void;
 
+    /**
+     * @return array<int, NoteInterface>
+     */
     public function getNotifications(): array;
+
+    /**
+     * @return array<int, NoteInterface>
+     */
+    public function flashNotifications(): array;
 
     public function hasNotification(): bool;
 
@@ -18,8 +30,6 @@ interface NotificationInterface
     public function countNotification(): int;
 
     public function setNote(NoteInterface $note): bool;
-
-    public function flashNotifications(): array;
 
     public function noteFactory(string $message): NoteInterface;
 

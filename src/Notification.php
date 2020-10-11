@@ -10,7 +10,7 @@ use Falgun\Notification\Notes\NoteInterface;
 class Notification implements NotificationInterface
 {
 
-    const FLASH_NOTE_KEY = 'falgun_flash_notifications';
+    private const FLASH_NOTE_KEY = 'falgun_flash_notifications';
 
     protected Session $session;
     protected string $noteClass;
@@ -25,11 +25,19 @@ class Notification implements NotificationInterface
         $this->noteClass = $noteClass;
     }
 
+    /**
+     * @param array<int, NoteInterface> $notifications
+     * @return void
+     */
     public function setNotifications(array $notifications): void
     {
         $this->session->set(self::FLASH_NOTE_KEY, $notifications);
     }
 
+    /**
+     * get notifications from session
+     * @return array<int, NoteInterface>
+     */
     public function getNotifications(): array
     {
         if ($this->session->has(self::FLASH_NOTE_KEY)) {
@@ -63,6 +71,9 @@ class Notification implements NotificationInterface
         return $this->hasNotification();
     }
 
+    /**
+     * @return array<int, NoteInterface>
+     */
     public function flashNotifications(): array
     {
         if ($this->hasNotification() !== true) {
