@@ -112,7 +112,8 @@ class Notification implements NotificationInterface
     public function errorNote(string $message): void
     {
         $note = $this->noteFactory($message);
-        $note->markAsError();
+        // we do not need to mark it as error
+        // because it is error as default
 
         $this->setNote($note);
     }

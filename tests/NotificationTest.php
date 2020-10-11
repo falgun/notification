@@ -73,4 +73,22 @@ class NotificationTest extends TestCase
                 $e->getMessage());
         }
     }
+
+    public function testErrorByDefault()
+    {
+        $message = 'we are testing default';
+
+        $simpleNote = new SimpleNote($message);
+        $jsonNote = new \Falgun\Notification\Notes\JsonNote($message);
+        $bootstrapNote = new BootstrapNote($message);
+
+        $this->assertSame($message, $simpleNote->getMessage());
+        $this->assertSame('error', $simpleNote->getType());
+
+        $this->assertSame($message, $jsonNote->getMessage());
+        $this->assertSame('error', $jsonNote->getType());
+
+        $this->assertSame($message, $bootstrapNote->getMessage());
+        $this->assertSame('danger', $bootstrapNote->getType());
+    }
 }
