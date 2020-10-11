@@ -15,6 +15,10 @@ class Notification implements NotificationInterface
     protected Session $session;
     protected string $noteClass;
 
+    /**
+     * @param Session $session
+     * @param class-string $noteClass
+     */
     public function __construct(Session $session, string $noteClass = BootstrapNote::class)
     {
         $this->session = $session;
@@ -72,6 +76,12 @@ class Notification implements NotificationInterface
         return $notifications;
     }
 
+    /**
+     * @param string $message
+     * @return NoteInterface
+     * @throws \RuntimeException
+     * @psalm-suppress InvalidStringClass
+     */
     public function noteFactory(string $message): NoteInterface
     {
         $note = new $this->noteClass($message);
