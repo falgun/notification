@@ -50,6 +50,15 @@ class NotificationTest extends TestCase
         $this->assertEquals(false, $notification->hasNotification());
     }
 
+    public function testEmptyNotification()
+    {
+        $session = new MockSession();
+
+        $notification = new Notification($session, SimpleNote::class);
+
+        $this->assertSame([], $notification->flashNotifications());
+    }
+
     public function testInvalidNoteClass()
     {
         $session = new MockSession();

@@ -12,6 +12,60 @@ use PHPUnit\Framework\TestCase;
 class NotificationTypeTest extends TestCase
 {
 
+    public function testSuccessNote()
+    {
+        $session = new MockSession();
+
+        $notification = new Notification($session);
+
+        $message = 'Oh Yeah';
+
+        $notification->successNote($message);
+
+        /* @var $note BootstrapNote */
+        $note = $notification->getNotifications()[0];
+
+        $this->assertSame($message, $note->getMessage());
+        $this->assertSame('success', $note->getType());
+        $this->assertSame('check', $note->getIcon());
+    }
+
+    public function testWarningNote()
+    {
+        $session = new MockSession();
+
+        $notification = new Notification($session);
+
+        $message = 'Oh Yeah';
+
+        $notification->warningNote($message);
+
+        /* @var $note BootstrapNote */
+        $note = $notification->getNotifications()[0];
+
+        $this->assertSame($message, $note->getMessage());
+        $this->assertSame('warning', $note->getType());
+        $this->assertSame('exclamation-triangle', $note->getIcon());
+    }
+
+    public function testErrorNote()
+    {
+        $session = new MockSession();
+
+        $notification = new Notification($session);
+
+        $message = 'Oh Yeah';
+
+        $notification->errorNote($message);
+
+        /* @var $note BootstrapNote */
+        $note = $notification->getNotifications()[0];
+
+        $this->assertSame($message, $note->getMessage());
+        $this->assertSame('danger', $note->getType());
+        $this->assertSame('times', $note->getIcon());
+    }
+
     public function testBootstrapNotification()
     {
         $session = new MockSession();
