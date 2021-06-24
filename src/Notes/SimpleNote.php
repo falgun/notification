@@ -19,16 +19,25 @@ class SimpleNote implements NoteInterface
         $this->markAsError();
     }
 
+    /**
+     * @psalm-suppress MixedAssignment
+     */
     public function markAsError(): void
     {
         $this->type = static::TYPE_ERROR;
     }
 
+    /**
+     * @psalm-suppress MixedAssignment
+     */
     public function markAsSuccess(): void
     {
         $this->type = static::TYPE_SUCCESS;
     }
 
+    /**
+     * @psalm-suppress MixedAssignment
+     */
     public function markAsWarning(): void
     {
         $this->type = static::TYPE_WARNING;

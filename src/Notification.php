@@ -37,6 +37,9 @@ class Notification implements NotificationInterface
     /**
      * get notifications from session
      * @return array<int, NoteInterface>
+     *
+     * @psalm-suppress MixedInferredReturnType
+     * @psalm-suppress MixedReturnStatement
      */
     public function getNotifications(): array
     {
